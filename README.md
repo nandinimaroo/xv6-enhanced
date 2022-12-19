@@ -65,19 +65,7 @@ The default flag would be Round Robin = `RR`.
 - Now we loop through all the levels of the mlfqueue, if there is a process that has just been added to the queue (preferably of higher priority) [note here 0 is higher than 1] then that is chosen as the `next_proc`. We switch to the `next_proc`.
 - In kernel/trap.c, we handle preemption by pushing the process (that’s giving up control) back into the same priority queue.
 - If a processes completely uses up the time slice that is allotted for its execution in a certain queue, it is moved to the end of queue with next lower priority for completion of execution. However, if the process voluntarily relinquishes control of the CPU, it is pushed to the end of the same queue. Therefore, we can make use of this if we voluntarily make a process leave the queuing network if its time slice is about to end. As a result, it will stay in the higher priority queue instead of being pushed to the queue with next lower priority.
-    
-    <aside>
-    💡 If the process uses the complete time slice assigned for its current priority queue, it
-    is preempted and inserted at the end of the next lower level queue.
-    
-    If a process voluntarily relinquishes control of the CPU(e.g. For doing I/O), it leaves
-    the queuing network, and when the process becomes ready again after the I/O, it is
-    inserted at the tail of the same queue, from which it is relinquished earlier.
-    **How can a process exploit these facts?**
-    
-    A process have an I/O scheduled just before the last tick after which it uses up its time slice. So if this process keeps on having an I/O like this, every instance it is supposed to go to a lower priority, instead it just stays at the same level just gets added to the tail. A process can stay in the same level until its completed even if it has a huge running time, by having I/Os scheduled like this.
-    
-    </aside>
+   
     
     # Analysis of Different Scheduling Algorithms
     
