@@ -2,9 +2,6 @@
 
 ---
 
-
-**Nandini Maroo - 2021111012**
-
 ## Specification 1 : System Calls
 
 ### System Call 1 : `trace`
