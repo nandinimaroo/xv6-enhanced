@@ -2,7 +2,6 @@
 
 ---
 
-**Anushka Jain - 2021111008**
 
 **Nandini Maroo - 2021111012**
 
